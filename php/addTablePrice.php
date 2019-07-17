@@ -27,14 +27,8 @@ if (isset($_POST['mostrar'])) {
     for ($i=0; $i < count($since); $i++)
     {
       $date=date_create($since[$i]);
-      $id_MY= date_format($date,"m-Y");
-
-      $id_dia_desde= date_format($date,"d-");
-      $date2=date_create($until[$i]);
-      $id_dia_hasta= date_format($date2,"d-");
-
-      $id_date= $id_dia_desde.$id_dia_hasta.$id_MY;
-
+      $id_date= date_format($date,"Ym");
+    
       $desde=$since[$i];
       $hasta=$until[$i];
       $h_normal=$normal[$i];
@@ -46,8 +40,7 @@ if (isset($_POST['mostrar'])) {
                               			*
                               FROM price
                               			WHERE 	(DATE_FORMAT(desde,'%Y-%m')=:ANNOMES) and
-                              						  ((desde<=:desde AND hasta>=:hasta) OR
-                              						  (desde<=:desde or hasta>=:hasta))" );
+                              						  (desde<=:desde AND hasta>=:hasta)" );
       $ANNOMES= date_format($date,"Y-m");
 
       $consulta->bindParam(':ANNOMES', $ANNOMES);

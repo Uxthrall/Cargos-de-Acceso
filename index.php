@@ -14,6 +14,7 @@
     <script src="js/bootstrap.min.js"> </script>
     <script src="js/agregarCampo.js"> </script>
     <script src="js/showUser.js"></script>
+    <script src="js/showTablePrice.js"></script>
     <?php
       require ('php/conexion.php');
       $con = connectDB();
@@ -49,29 +50,62 @@
                             <!-- con js muestra lo contenido en getuser.php  -->
                       </div>
                       <!-- ====================================================== -->
+
+
+
                       <!-- <div class="col-md-4"> -->
-                      <div class="panel-body">
-                            <table class="table table-bordered " id="tablaresponsive">
-                              <thead>
-                                <th colspan="2" class="text-center">Periodo</th>
-                                <th colspan="3" class="text-center">Precios(H.NO H.RE H.NOC)</th>
-                                <th colspan="1"><button type="button" id="nueva" class="btn btn-info">Nueva</button></th>
-                              </thead>
-                              <tbody id="tBody">
-                                <tr id="Tr">
-                                  <td><input type="date" class="form-control" required name="desde[]" id="desde"  placeholder="Desde" ></td>
-                                  <td><input type="date" class="form-control" required name="hasta[]" id="hasta" placeholder="Hasta"  ></td>
-                                  <td><input type="number" class="form-control" required name="normal[]" id="normal" placeholder="NORMAL" ></td>
-                                  <td><input type="number" class="form-control" required name="reducido[]" id="reducido" placeholder="REDUCIDO"  ></td>
-                                  <td><input type="number" class="form-control" required name="nocturno[]" id="nocturno" placeholder="NOCTURNO"  ></td>
-                                  <td><button type="button" class="btn btn-danger" id="eliminalinea">eliminar</button></td></td>
-                               </tr>
-                               </tbody>
-                            </table>
+                      <div class="col-md-6">
+                        <select class="custom-select d-block w-100" onchange="showTablePrice(this.value);">
 
-                        </div>
+                          <?php
+
+                          $meses= Array("January"  => "Enero",
+                                        "February"  => "Febrero",
+                                        "March"  => "Marzo",
+                                        "April"  => "Abril",
+                                        "May"  => "Mayo",
+                                        "June"  => "Junio",
+                                        "July"  => "Julio",
+                                        "August"  => "Agosto",
+                                        "September"  => "Septiembre",
+                                        "October" => "Octubre ",
+                                        "November"  => "Noviembre",
+                                        "December"  => "Diciembre");
+
+                            $sql=" SELECT DISTINCT  DATE_FORMAT(desde,'%M') as MES, DATE_FORMAT(desde,'%Y') as ANHO, id_date FROM PRICE ORDER BY desde ASC";
+
+                            $resultado=mysqli_query($con,$sql);
+
+                            if ($resultado)
+                            {
+                              ?><option value="" selected disabled>Seleccione Periodo</option><?php
+
+                              while ($value=mysqli_fetch_assoc($resultado))
+                              {
+                                    $MES=utf8_encode($value['MES']);
+                                    $ANHO=$value['ANHO'];
+                                    $ID_DATE=$value['id_date'];
+
+                          ?>
+                                <p><?php echo $ID_DATE; ?></p>
+                                      <option value=<?php echo $ID_DATE; ?>> <?php echo $meses[$MES]." del ".$ANHO ?></option>
+                          <?php
+
+                                    
+                              }
+                            }
+                            else
+                            {
+                              ?><option value="" selected disabled> Error de conexion</option><?php
+                            }
+                           ?>
+                           </select>
+
+                      </div>
                         <!-- =================================================================   -->
-
+                        <br>
+                          <div id="txtTable"><b>Periodo Seleccionado</b></div>
+                          <br>
 
                         <button class="btn btn-primary btn-lg " type="submit" name="mostrar" onclick=this.form.action="index.php"   > Mostrar</button>
 
@@ -124,18 +158,7 @@
             {
               $nom=utf8_encode($name['nom_op']);
             }
-            $meses= Array("January"  => "Enero",
-                          "February"  => "Febrero",
-                          "March"  => "Marzo",
-                          "April"  => "Abril",
-                          "May"  => "Mayo",
-                          "June"  => "Junio",
-                          "July"  => "Julio",
-                          "August"  => "Agosto",
-                          "September"  => "Septiembre",
-                          "October" => "Octubre ",
-                          "November"  => "Noviembre",
-                          "December"  => "Diciembre");
+
 
 
           ?>

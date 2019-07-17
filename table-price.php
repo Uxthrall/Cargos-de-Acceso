@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="DataTables/datatables.css">
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/popper.min.js"> </script>
-    <script src="js/bootstrap.min.js"> </script>
-    <script src="js/agregarCampo.js"> </script>
-    <script src="js/showUser.js"></script>
     <?php
       require ('php/conexion.php');
       $con = connectDB_PDO();
@@ -23,7 +18,7 @@
       <div class="container">
 
 
-              <form class="needs-validation"   name='formulario' method='POST' id="table" enctype="multipart/form-data"  novalidate >
+              <form class="needs-validation"   name="formulario" method='POST' id="table" enctype="multipart/form-data"  novalidate >
 
 
                     <div class="panel-body">
@@ -84,7 +79,7 @@
                             while ($datos = $consulta->fetch()) {
                       ?>
                               <tr>
-                                  <!-- DATOS  DE DESDE -->
+                                <!-- DATOS  DE DESDE -->
                                   <td><?php echo $datos[0] ;?></td>
                                   <!-- DATOS  DE Hasta -->
                                   <td><?php echo $datos[1] ;?></td>
@@ -105,8 +100,10 @@
 
 
       </div>
-
       <script type="text/javascript" src="js/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+      <script src="js/popper.min.js"> </script>
+      <script src="js/bootstrap.min.js"> </script>
+      <script src="js/agregarCampo.js"> </script>
       <script type="text/javascript" src="DataTables/datatables.js"></script>
       <script type="text/javascript" src="js/DataTable.js"></script>
 </body>
