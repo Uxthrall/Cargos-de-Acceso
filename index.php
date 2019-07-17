@@ -55,7 +55,7 @@
 
                       <!-- <div class="col-md-4"> -->
                       <div class="col-md-6">
-                        <select class="custom-select d-block w-100" onchange="showTablePrice(this.value);">
+                        <select id="mySelect" class="custom-select d-block w-100" onchange="showTablePrice(this.value);">
 
                           <?php
 
@@ -72,7 +72,7 @@
                                         "November"  => "Noviembre",
                                         "December"  => "Diciembre");
 
-                            $sql=" SELECT DISTINCT  DATE_FORMAT(desde,'%M') as MES, DATE_FORMAT(desde,'%Y') as ANHO, id_date FROM PRICE ORDER BY desde ASC";
+                            $sql=" SELECT DISTINCT  DATE_FORMAT(desde,'%M') as MES, DATE_FORMAT(desde,'%Y') as ANHO, id_date,tipo FROM PRICE ORDER BY desde ASC";
 
                             $resultado=mysqli_query($con,$sql);
 
@@ -85,13 +85,15 @@
                                     $MES=utf8_encode($value['MES']);
                                     $ANHO=$value['ANHO'];
                                     $ID_DATE=$value['id_date'];
-
+                                    $tipo=$value['tipo'];
                           ?>
                                 <p><?php echo $ID_DATE; ?></p>
-                                      <option value=<?php echo $ID_DATE; ?>> <?php echo $meses[$MES]." del ".$ANHO ?></option>
+                                      <option value="<?php echo $tipo.$ID_DATE; ?>"> <?php echo $tipo." - ".$meses[$MES]." del ".$ANHO ?></option>
+
+
                           <?php
 
-                                    
+
                               }
                             }
                             else
@@ -102,6 +104,7 @@
                            </select>
 
                       </div>
+
                         <!-- =================================================================   -->
                         <br>
                           <div id="txtTable"><b>Periodo Seleccionado</b></div>

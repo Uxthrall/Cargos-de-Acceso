@@ -16,6 +16,7 @@
     <table class="table" class="display" >
           <thead>
               <tr>
+                  <th>Tipo</th>
                   <th>Desde</th>
                   <th>Hasta</th>
                   <th>H. Normal</th>
@@ -25,19 +26,24 @@
           </thead>
           <tbody>
             <?php
-             $id_date = intval($_GET['id']);
+             $id = $_GET['id'];
+             $id_date=substr($id,-6);
+             $tipo=substr($id,0,-6);
 
             $consulta = $con->prepare("SELECT
+                                              tipo,
                                               desde,
                                               hasta,
                                               normal,
                                               reducido,
                                               nocturno
                                       FROM PRICE
-                                                WHERE id_date=:IDDATE
+                                                WHERE id_date=:IDDATE and tipo=:TIPO
                                                 ORDER BY desde ASC");
 
             $consulta->bindParam(":IDDATE", $id_date);
+            $consulta->bindParam(":TIPO", $tipo);
+
             $consulta->execute();
              ?>
              <?php
@@ -54,7 +60,15 @@
                         <td><?php echo $datos[3] ;?></td>
                         <!-- DATOS DE  H. Nocturno -->
                         <td><?php echo $datos[4] ;?></td>
+
+                        <td><?php echo $datos[5] ;?></td>
                     </tr>
+
+                    <input type="hidden" class="form-control"  name="desde[]"     value=<?php echo $datos[0] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="hasta[]"     value=<?php echo $datos[1] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="normal[]"    value=<?php echo $datos[2] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="reducido[]"  value=<?php echo $datos[3] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="nocturno[]"  value=<?php echo $datos[4] ;?> ></td>
 
              <?php
                   }

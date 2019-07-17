@@ -4,10 +4,11 @@
 
  $con = connectDB_PDO();
 //se prepara la consulta
-$my_Insert_Statement = $con->prepare("INSERT INTO price (id_date,desde,hasta,normal,reducido,nocturno) VALUES (:id_date,:desde,:hasta,:normal,:reducido,:nocturno)");
+$my_Insert_Statement = $con->prepare("INSERT INTO price (id_date,tipo,desde,hasta,normal,reducido,nocturno) VALUES (:id_date,:tipo,:desde,:hasta,:normal,:reducido,:nocturno)");
 
 // Ahora las variable declaradas en la insercion son remplazadas por las varaibles locales. Los Datos son iguales
 $my_Insert_Statement->bindParam(':id_date', $id_date);
+$my_Insert_Statement->bindParam(':tipo', $tipo);
 $my_Insert_Statement->bindParam(':desde', $desde);
 $my_Insert_Statement->bindParam(':hasta', $hasta);
 $my_Insert_Statement->bindParam(':normal', $h_normal);
@@ -17,7 +18,7 @@ $my_Insert_Statement->bindParam(':nocturno', $h_nocturno);
 
 if (isset($_POST['mostrar'])) {
 // //Captura datos enviado por POST y se modifica con variables locales
-
+      $tipo_p = $_POST['tipo'];
       $since=$_POST['desde'];
       $until=$_POST['hasta'];
       $normal=$_POST['normal'];
@@ -28,7 +29,8 @@ if (isset($_POST['mostrar'])) {
     {
       $date=date_create($since[$i]);
       $id_date= date_format($date,"Ym");
-    
+
+      $tipo=strtoupper($tipo_p[$i]);
       $desde=$since[$i];
       $hasta=$until[$i];
       $h_normal=$normal[$i];
@@ -53,12 +55,12 @@ if (isset($_POST['mostrar'])) {
 
       $datos = $consulta->fetch();
 
-      if($datos!=null)
-      {
-          echo "Los valores se encuentran Registrado";
-      }
-      else
-      {
+      // if($datos!=null)
+      // {
+      //     echo "Los valores se encuentran Registrado";
+      // }
+      // else
+      // {
         //comando para ejecutar el query
           if ($my_Insert_Statement->execute())
           {
@@ -68,7 +70,7 @@ if (isset($_POST['mostrar'])) {
           {
             echo "No Registrado";
           }
-      }
+      // }
 
 
     }

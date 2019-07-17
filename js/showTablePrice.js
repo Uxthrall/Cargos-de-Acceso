@@ -1,5 +1,6 @@
-function showTablePrice(str)
+function showTablePrice()
 {
+    var str = document.getElementById("mySelect").value;
     if (str == "")
     {
         document.getElementById("txtTable").innerHTML = "";

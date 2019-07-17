@@ -25,7 +25,7 @@
                           <table class="table table-bordered " id="tablaresponsive">
 
                             <thead>
-
+                              <th colspan="1" class="text-center">Tipo</th>
                               <th colspan="2" class="text-center">Periodo</th>
                               <th colspan="3" class="text-center">Precios(H.NO H.RE H.NOC)</th>
                               <th colspan="1"><button type="button" id="nueva" class="btn btn-info">Nueva</button></th>
@@ -35,6 +35,7 @@
                             <tbody id="tBody">
 
                               <tr id="Tr">
+                                <td><input type="text" class="form-control"  name="tipo[]" id="tipo"  placeholder="Nombre" required></td>
                                 <td><input type="date" class="form-control"  name="desde[]" id="desde"  placeholder="Desde" required></td>
                                 <td><input type="date" class="form-control"  name="hasta[]" id="hasta" placeholder="Hasta"  required></td>
                                 <td><input type="number" class="form-control"  name="normal[]" id="normal" placeholder="NORMAL"required ></td>
@@ -56,6 +57,7 @@
               <table id="dataTables" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Tipo</th>
                             <th>Desde</th>
                             <th>Hasta</th>
                             <th>H. Normal</th>
@@ -66,6 +68,7 @@
                     <tbody>
                       <?php
                       $consulta = $con->prepare("SELECT
+                                                        tipo,
                                                         desde,
                                                         hasta,
                                                         normal,
@@ -79,16 +82,18 @@
                             while ($datos = $consulta->fetch()) {
                       ?>
                               <tr>
-                                <!-- DATOS  DE DESDE -->
+                                  <!-- DATOS  DE TIPO -->
                                   <td><?php echo $datos[0] ;?></td>
-                                  <!-- DATOS  DE Hasta -->
+                                  <!-- DATOS  DE DESDE -->
                                   <td><?php echo $datos[1] ;?></td>
-                                  <!-- DATOS  DE H. Normal -->
+                                  <!-- DATOS  DE Hasta -->
                                   <td><?php echo $datos[2] ;?></td>
-                                  <!-- DATOS DE  H. Reducido -->
+                                  <!-- DATOS  DE H. Normal -->
                                   <td><?php echo $datos[3] ;?></td>
-                                  <!-- DATOS DE  H. Nocturno -->
+                                  <!-- DATOS DE  H. Reducido -->
                                   <td><?php echo $datos[4] ;?></td>
+                                  <!-- DATOS DE  H. Nocturno -->
+                                  <td><?php echo $datos[5] ;?></td>
                               </tr>
 
                        <?php
@@ -102,8 +107,11 @@
       </div>
       <script type="text/javascript" src="js/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
       <script src="js/popper.min.js"> </script>
+      <script type="text/javascript" src="js/agregarCampo.js"> </script>
       <script src="js/bootstrap.min.js"> </script>
-      <script src="js/agregarCampo.js"> </script>
+
+      <script src="js/showUser.js"></script>
+
       <script type="text/javascript" src="DataTables/datatables.js"></script>
       <script type="text/javascript" src="js/DataTable.js"></script>
 </body>
