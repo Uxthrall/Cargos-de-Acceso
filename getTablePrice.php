@@ -64,11 +64,11 @@
                         <td><?php echo $datos[5] ;?></td>
                     </tr>
 
-                    <input type="hidden" class="form-control"  name="desde[]"     value=<?php echo $datos[0] ;?> ></td>
-                    <input type="hidden" class="form-control"  name="hasta[]"     value=<?php echo $datos[1] ;?> ></td>
-                    <input type="hidden" class="form-control"  name="normal[]"    value=<?php echo $datos[2] ;?> ></td>
-                    <input type="hidden" class="form-control"  name="reducido[]"  value=<?php echo $datos[3] ;?> ></td>
-                    <input type="hidden" class="form-control"  name="nocturno[]"  value=<?php echo $datos[4] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="desde[]"     value=<?php echo $datos[1] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="hasta[]"     value=<?php echo $datos[2] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="normal[]"    value=<?php echo $datos[3] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="reducido[]"  value=<?php echo $datos[4] ;?> ></td>
+                    <input type="hidden" class="form-control"  name="nocturno[]"  value=<?php echo $datos[5] ;?> ></td>
 
              <?php
                   }

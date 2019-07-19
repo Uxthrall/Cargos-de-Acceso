@@ -332,7 +332,7 @@
                     $desde = date_format($fecha1, "m-d");
                     $hasta = date_format($fecha2, "m-d");
                ?>
-               <!-- TODOH LO CAPTURADO POR LAS CONSULTAS Y POST ES IMPRESO AQUI (SON DATOS DE LA 2 TABLA)-->
+               <!-- TODOh LO CAPTURADO POR LAS CONSULTAS Y POST ES IMPRESO AQUI (SON DATOS DE LA 2 TABLA)-->
                      <tr>
                           <td><?php echo $desde; ?> al <?php  echo $hasta; ?></td></td>
                           <!-- segundos -->
